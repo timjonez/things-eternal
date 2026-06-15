@@ -211,6 +211,66 @@ blockquote p:last-child {
   color: var(--color-accent);
   font-family: var(--font-sans);
   font-size: 0.95em;
+  position: relative;
+  cursor: default;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--color-accent-light);
+  text-underline-offset: 2px;
+  display: inline-block;
+}
+
+blockquote .reference {
+  color: inherit;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Hard-coded verse popover */
+.verse-popover {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-strong);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  font-weight: normal;
+  font-style: normal;
+  font-family: var(--font-serif);
+  white-space: pre-line;
+  max-width: 420px;
+  width: max-content;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+  z-index: 1000;
+  pointer-events: none;
+  text-align: left;
+  text-decoration: none;
+}
+
+.reference:hover .verse-popover,
+.verse-popover:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Arrow */
+.verse-popover::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-surface);
 }
 
 /* ============================================
