@@ -1,0 +1,695 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* ============================================
+   Things Eternal — Modern Design System
+   Light/Dark via prefers-color-scheme
+   ============================================ */
+
+:root {
+  /* Light mode (default) */
+  --color-bg: #fafaf9;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f5f5f4;
+  --color-text: #1c1917;
+  --color-text-secondary: #78716c;
+  --color-text-muted: #a8a29e;
+  --color-border: #e7e5e4;
+  --color-border-strong: #d6d3d1;
+  --color-accent: #0c4a6e;
+  --color-accent-light: #0ea5e9;
+  --color-accent-bg: #e0f2fe;
+  --color-success: #16a34a;
+  --color-success-bg: #dcfce7;
+  --color-error: #dc2626;
+  --color-error-bg: #fee2e2;
+  --color-warning: #d97706;
+  --color-scripture-bg: #f5f5f4;
+  --color-scripture-border: #d6d3d1;
+  --color-link: #0c4a6e;
+  --color-link-hover: #0ea5e9;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0c0a09;
+    --color-surface: #1c1917;
+    --color-surface-raised: #292524;
+    --color-text: #fafaf9;
+    --color-text-secondary: #a8a29e;
+    --color-text-muted: #78716c;
+    --color-border: #292524;
+    --color-border-strong: #44403c;
+    --color-accent: #38bdf8;
+    --color-accent-light: #7dd3fc;
+    --color-accent-bg: #0c4a6e;
+    --color-success: #4ade80;
+    --color-success-bg: #064e3b;
+    --color-error: #f87171;
+    --color-error-bg: #7f1d1d;
+    --color-warning: #fbbf24;
+    --color-scripture-bg: #1c1917;
+    --color-scripture-border: #44403c;
+    --color-link: #38bdf8;
+    --color-link-hover: #7dd3fc;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* ============================================
+   Base & Reset
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  text-align: center;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+h4 {
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+p {
+  margin-bottom: 1rem;
+  orphans: 3;
+  widows: 3;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+em {
+  font-style: italic;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-light);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  transition: color var(--transition-base), text-decoration-color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration-color: var(--color-link-hover);
+}
+
+/* ============================================
+   Scripture & Blockquotes
+   ============================================ */
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--color-accent-light);
+  background: var(--color-scripture-bg);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  transition: background-color var(--transition-slow);
+}
+
+blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.scripture {
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+.reference {
+  font-weight: 700;
+  font-style: normal;
+  color: var(--color-accent);
+  font-family: var(--font-sans);
+  font-size: 0.95em;
+}
+
+/* ============================================
+   Lists
+   ============================================ */
+
+ul, ol {
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+
+li::marker {
+  color: var(--color-accent-light);
+}
+
+ol li::marker {
+  font-weight: 700;
+}
+
+/* Nested lists */
+li > ol, li > ul {
+  margin-top: 0.5rem;
+}
+
+/* ============================================
+   Navigation
+   ============================================ */
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 0.625rem 1.25rem;
+  background: var(--color-surface-raised);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-links a:hover {
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  color: var(--color-text);
+}
+
+.nav-links a:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-next {
+  margin-left: auto;
+}
+
+/* ============================================
+   Series Intro (Landing page)
+   ============================================ */
+
+.series-intro {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding: 2rem 1.5rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  transition: background-color var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+.series-intro p {
+  margin: 0.75rem 0;
+  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+}
+
+.series-intro p strong {
+  color: var(--color-text);
+}
+
+.series-intro blockquote {
+  text-align: left;
+  margin: 1.5rem 0;
+}
+
+/* ============================================
+   Lesson List (Landing page)
+   ============================================ */
+
+.lesson-list {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+
+.lesson-list h3 {
+  text-align: center;
+  border-bottom: none;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.lesson-list ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lesson-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.lesson-list a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-list a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-accent-light);
+  transform: scaleY(0);
+  transition: transform var(--transition-base);
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.lesson-list a:hover {
+  background: var(--color-surface-raised);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  color: var(--color-text);
+}
+
+.lesson-list a:hover::before {
+  transform: scaleY(1);
+}
+
+.lesson-list .lesson-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-accent);
+}
+
+.lesson-list .lesson-topic {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+/* ============================================
+   Belief Question (Lesson 1)
+   ============================================ */
+
+.belief-question {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1.75rem;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  transition: background-color var(--transition-slow);
+}
+
+.belief-question p {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.belief-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.belief-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 2px solid;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  min-width: 160px;
+}
+
+.belief-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.belief-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.belief-btn:focus-visible {
+  outline: 3px solid var(--color-accent-light);
+  outline-offset: 2px;
+}
+
+.belief-btn-yes {
+  background: var(--color-success);
+  color: #ffffff;
+  border-color: var(--color-success);
+}
+
+.belief-btn-yes:hover {
+  background: #15803d;
+  border-color: #15803d;
+  color: #ffffff;
+}
+
+.belief-btn-no {
+  background: var(--color-surface-raised);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border-strong);
+}
+
+.belief-btn-no:hover {
+  background: var(--color-surface);
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+}
+
+/* ============================================
+   Interactive Blanks (injected by JS)
+   ============================================ */
+
+.blank-interactive {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  vertical-align: middle;
+  flex-wrap: wrap;
+}
+
+.blank-input {
+  font-family: var(--font-sans);
+  font-size: 1em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  min-width: 70px;
+  width: auto;
+  text-align: center;
+  transition: border-color var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+  margin: 0 2px;
+}
+
+.blank-input:focus {
+  outline: none;
+  border-color: var(--color-accent-light);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 3px var(--color-accent-bg);
+}
+
+.blank-input.correct {
+  border-color: var(--color-success);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.blank-input.incorrect {
+  border-color: var(--color-error);
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.blank-feedback {
+  font-size: 0.85em;
+  font-weight: 700;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+}
+
+.blank-feedback.correct {
+  color: var(--color-success);
+}
+
+.blank-feedback.incorrect {
+  color: var(--color-error);
+}
+
+.blank-show-answer {
+  font-size: 0.75em;
+  padding: 3px 10px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all var(--transition-base);
+}
+
+.blank-show-answer:hover {
+  background: var(--color-surface);
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+}
+
+.blank-answer-shown {
+  color: var(--color-accent-light);
+  font-size: 0.85em;
+  font-weight: 700;
+  white-space: nowrap;
+  font-family: var(--font-sans);
+}
+
+/* ============================================
+   Utility & Misc
+   ============================================ */
+
+hr {
+  border: none;
+  height: 1px;
+  background: var(--color-border);
+  margin: 2rem 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 640px) {
+  body {
+    padding: 1.5rem 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.05rem;
+  }
+
+  blockquote {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-links a {
+    justify-content: center;
+  }
+
+  .nav-next {
+    margin-left: 0;
+  }
+
+  .belief-buttons {
+    flex-direction: column;
+  }
+
+  .belief-btn {
+    width: 100%;
+  }
+
+  .lesson-list a {
+    padding: 1rem;
+  }
+
+  .series-intro {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* ============================================
+   Print styles
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+    max-width: none;
+    padding: 0;
+  }
+
+  .nav-links,
+  .blank-show-answer,
+  .blank-feedback {
+    display: none !important;
+  }
+
+  .blank-input {
+    border: 1px solid #999;
+    background: transparent;
+  }
+
+  blockquote {
+    border-left: 3px solid #999;
+    background: transparent;
+  }
+}
+
+/* ============================================
+   Reduced motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
