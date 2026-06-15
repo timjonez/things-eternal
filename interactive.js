@@ -170,10 +170,59 @@
     });
   }
 
+  function initVersePopovers() {
+    const references = document.querySelectorAll('.reference');
+
+    references.forEach(function (ref) {
+      const popover = ref.querySelector('.verse-popover');
+      if (!popover) return;
+
+      // Toggle on click (for mobile and desktop)
+      ref.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Close all other popovers
+        references.forEach(function (otherRef) {
+          if (otherRef !== ref) {
+            otherRef.classList.remove('active');
+            const otherPop = otherRef.querySelector('.verse-popover');
+            if (otherPop) otherPop.classList.remove('active');
+          }
+        });
+
+        // Toggle this popover
+        const isActive = ref.classList.contains('active');
+        if (isActive) {
+          ref.classList.remove('active');
+          popover.classList.remove('active');
+        } else {
+          ref.classList.add('active');
+          popover.classList.add('active');
+        }
+      });
+    });
+
+    // Close popovers when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.reference')) {
+        references.forEach(function (ref) {
+          ref.classList.remove('active');
+          const popover = ref.querySelector('.verse-popover');
+          if (popover) popover.classList.remove('active');
+        });
+      }
+    });
+  }
+
   addStyles();
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBlanks);
+    document.addEventListener('DOMContentLoaded', function () {
+      initBlanks();
+      initVersePopovers();
+    });
   } else {
     initBlanks();
+    initVersePopovers();
   }
 })();

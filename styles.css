@@ -257,9 +257,11 @@ blockquote .reference {
 }
 
 .reference:hover .verse-popover,
-.verse-popover:hover {
+.reference.active .verse-popover,
+.verse-popover.active {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 /* Arrow */
